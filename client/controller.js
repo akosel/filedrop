@@ -140,8 +140,47 @@ filedrop.Controller.prototype.dropFile = function(files) {
  */
 filedrop.Controller.prototype.processUpload_ = function(files) {
 
+  this.dialog_.show({
+    template:
+    '<md-dialog flex="50" aria-label="List dialog">' +
+    '<md-toolbar>'+
+    '  <div class="md-toolbar-tools">'+
+    '    <h2>Uploads</h2>'+
+    '    <span flex></span>'+
+    '    <md-button class="md-icon-button" ng-click="cancel()">'+
+    '      <md-icon md-svg-icon="file:ic_close_24px.svg" aria-label="Close dialog"></md-icon>'+
+    '    </md-button>'+
+    '  </div>'+
+    '</md-toolbar>'+
+    '  <md-dialog-content>'+
+    '    <md-list>'+
+    '      <md-list-item ng-repeat="(name, value) in items">'+
+    '       <div flex="100" layout="row">'+
+    '       <span flex="50">{{name}}</span>'+
+    '<md-progress-linear flex="50" md-mode="determinate" value="{{ 100 * value.percentComplete }}"></md-progress-linear>' +
+    '       </div>'+
+    '    </md-list-item>'+
+    '       <md-divider></md-divider>'+
+    '       </md-list>'+
+    '  </md-dialog-content>' +
+    '</md-dialog>',  
+    hasBackdrop: false,
+    locals: {
+      items: this.uploadManager_.uploads
+    },
+    controller: UploadManagerController
+  });
+
+  function UploadManagerController($scope, $mdDialog, items) {
+    $scope.items = items;
+    $scope.cancel = function() {
+      $mdDialog.hide();
+    };
+  }
+
   return this.uploadManager_.makeUploads(files)
-      .then(angular.bind(this, function(fileObjects) {
+      .then(angular.bind(this, function(uploads) {
+        // TODO Get successes and failures into groups
         if (fileObjects.length > 1) {
           var okText = 'Uploaded ' + fileObjects.length + ' files';
         } else {
@@ -151,9 +190,6 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
           this.files.push(fObj);
         }, this);
         this.toast_.showSimple(okText);
-      }), angular.bind(this, function() {
-        var failText = 'Failed to upload a file';
-        this.toast_.showSimple(failText);
       }));
 };
 

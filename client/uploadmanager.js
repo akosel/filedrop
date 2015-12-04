@@ -62,7 +62,7 @@ filedrop.UploadManager.prototype.add = function(file) {
       if (progressEvent.lengthComputable) {
         this.uploads[id].percentComplete = progressEvent.loaded / progressEvent.total;
       } else {
-        this.uploads[id].percentComplete = undefined;
+        this.uploads[id].percentComplete = 0;
         this.log_.warn('Total size not computable for file:', file.name);
       }
     }));
@@ -98,7 +98,10 @@ filedrop.UploadManager.prototype.fetch = function(ids) {
     promises.push(this.uploads[id]);
   }, this);
 
-  return this.q_.all(promises);
+  console.log(this.uploads);
+  return this.q_.all(promises).then(angular.bind(this, function(val) {
+    return this.uploads;
+  }));
 };
 
 /**
