@@ -142,7 +142,7 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
 
   this.dialog_.show({
     template:
-    '<md-dialog flex="50" aria-label="List dialog">' +
+    '<md-dialog flex="33" aria-label="List dialog" class="filedrop-upload-manager-dialog">' +
     '<md-toolbar>'+
     '  <div class="md-toolbar-tools">'+
     '    <h2>Uploads</h2>'+
@@ -154,16 +154,16 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
     '</md-toolbar>'+
     '  <md-dialog-content>'+
     '    <md-list>'+
-    '      <md-list-item ng-repeat="(name, value) in items">'+
+    '      <md-list-item class="filedrop-upload-manager-list-item" ng-repeat="(name, value) in items">'+
     '       <div flex="100" layout="row">'+
-    '       <span flex="50">{{name}}</span>'+
-    '<md-progress-linear flex="50" md-mode="determinate" value="{{ 100 * value.percentComplete }}"></md-progress-linear>' +
+    '       <span class="filedrop-upload-manager-text" flex="75">{{name}}</span>'+
+    '<md-progress-linear flex="25" md-mode="determinate" value="{{ 100 * value.percentComplete }}"></md-progress-linear>' +
     '       </div>'+
     '    </md-list-item>'+
     '       <md-divider></md-divider>'+
     '       </md-list>'+
     '  </md-dialog-content>' +
-    '</md-dialog>',  
+    '</md-dialog>',
     hasBackdrop: false,
     locals: {
       items: this.uploadManager_.uploads
@@ -181,12 +181,12 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
   return this.uploadManager_.makeUploads(files)
       .then(angular.bind(this, function(uploads) {
         // TODO Get successes and failures into groups
-        if (fileObjects.length > 1) {
-          var okText = 'Uploaded ' + fileObjects.length + ' files';
+        if (files.length > 1) {
+          var okText = 'Uploaded ' + files.length + ' files';
         } else {
-          var okText = 'Uploaded ' + fileObjects[0].name;
+          var okText = 'Uploaded ' + files[0].name;
         }
-        angular.forEach(fileObjects, function(fObj) {
+        angular.forEach(files, function(fObj) {
           this.files.push(fObj);
         }, this);
         this.toast_.showSimple(okText);

@@ -51,7 +51,7 @@ filedrop.UploadManager = function($q, Files, $log) {
  */
 filedrop.UploadManager.prototype.add = function(file) {
   var upload = this.filesService_.upload(file);
-  var id = this.id++;
+  var id = [this.id++, file.name].join('-');
   this.uploads[id] = upload.then(angular.bind(this, function(val) {
       this.uploads[id].status = 'success';
       return val;

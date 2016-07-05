@@ -35,6 +35,22 @@
   height: 64px;
 }
 
+.filedrop-upload-manager-dialog {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.filedrop-upload-manager-text {
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
+.filedrop-upload-manager-list-item {
+  border-bottom: solid 1px #eee;
+  padding-bottom: 6px;
+}
+
 /* Workaround for angular-material #3773 */
 .md-scroll-mask {
   z-index: 0 !important;
