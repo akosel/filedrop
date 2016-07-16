@@ -87,6 +87,7 @@ func initHandlers() {
 	r.Handle("/icons/action.svg", resourceHandler("third_party/material_design_icons/sprites/svg-sprite/svg-sprite-action.svg"))
 	r.Handle("/icons/file.svg", resourceHandler("third_party/material_design_icons/sprites/svg-sprite/svg-sprite-file.svg"))
 	r.Handle("/icons/navigation.svg", resourceHandler("third_party/material_design_icons/sprites/svg-sprite/svg-sprite-navigation.svg"))
+	r.Handle("/icons/content.svg", resourceHandler("third_party/material_design_icons/sprites/svg-sprite/svg-sprite-content.svg"))
 }
 
 func handleIndex(w http.ResponseWriter, req *http.Request) {

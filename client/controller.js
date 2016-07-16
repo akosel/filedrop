@@ -148,7 +148,7 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
     '    <h2>Uploads</h2>'+
     '    <span flex></span>'+
     '    <md-button class="md-icon-button" ng-click="cancel()">'+
-    '      <md-icon md-svg-icon="file:ic_close_24px.svg" aria-label="Close dialog"></md-icon>'+
+    '      <md-icon md-svg-icon="content:ic_clear_24px" aria-label="Close dialog"></md-icon>'+
     '    </md-button>'+
     '  </div>'+
     '</md-toolbar>'+
@@ -156,8 +156,8 @@ filedrop.Controller.prototype.processUpload_ = function(files) {
     '    <md-list>'+
     '      <md-list-item class="filedrop-upload-manager-list-item" ng-repeat="(name, value) in items">'+
     '       <div flex="100" layout="row">'+
-    '       <span class="filedrop-upload-manager-text" flex="75">{{name}}</span>'+
-    '<md-progress-linear flex="25" md-mode="determinate" value="{{ 100 * value.percentComplete }}"></md-progress-linear>' +
+    '         <span class="filedrop-upload-manager-text" flex="75">{{name}}</span>'+
+    '         <md-progress-linear flex="25" md-mode="determinate" value="{{ 100 * value.percentComplete }}"></md-progress-linear>' +
     '       </div>'+
     '    </md-list-item>'+
     '       <md-divider></md-divider>'+

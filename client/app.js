@@ -48,7 +48,8 @@ var config = function($mdIconProvider, $mdThemingProvider) {
   $mdIconProvider
       .iconSet('action', '/icons/action.svg')
       .iconSet('file', '/icons/file.svg')
-      .iconSet('navigation', '/icons/navigation.svg');
+      .iconSet('navigation', '/icons/navigation.svg')
+      .iconSet('content', '/icons/content.svg');
   $mdThemingProvider.theme('default')
       .primaryPalette('teal');
 };
